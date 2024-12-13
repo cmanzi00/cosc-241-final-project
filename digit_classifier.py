@@ -72,12 +72,15 @@ for y in range(0, 9):
         # Add the row to our cell locs
         cellLocs.append(row)
 
+# Board with no zzeros for missing values
+board_with_no_zeros = [["" if cell == 0 else cell for cell in row]
+                       for row in board.tolist()]
 
 # Solve the Sudoku puzzle with custom Z3 solver
 print("----------- [INFO] SOLVING SUDOKU PUZZLE -----------")
 solution = SudokuSolver(board.tolist()).solve()
 print("9x9 PUZZLE")
-print(tabulate(board.tolist(), tablefmt="fancy_grid"))
+print(tabulate(board_with_no_zeros, tablefmt="fancy_grid"))
 if solution is None:
     print("NO SOLUTION FOUND")
 else:
