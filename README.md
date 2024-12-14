@@ -1,6 +1,6 @@
-# CNN Trained Digit Classification Model w/ Sudoku Solver
+# Automated Sudoku Solver with Deep Learning for Digit Recognition
 
-This project trains a CNN model to classify digits, enabling it to extract Sudoku puzzles from images and solve them programmatically using the Z3 Solver. This project is accompanied by the following [report](https://github.com/user/repo/blob/branch/other_file.md)
+This project presents a framework for solving Sudoku puzzles from images using a hybrid approach. By combining a constraint solver with a Convolutional Neural Network (CNN) trained for digit recognition, our system efficiently extracts Sudoku grids, identifies digits, and computes solutions. [Final Project Report](./FInal%20Project%20Report.pdf)
 
 ---
 
