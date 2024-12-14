@@ -11,9 +11,6 @@ def extract_cell(cell):
                            cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
     thresh = clear_border(thresh)
 
-    # processed = cv2.Laplacian(thresh, cv2.CV_64F)
-    # processed = cv2.convertScaleAbs(processed)
-
     # Find contours in the thresholded cell
     cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
                             cv2.CHAIN_APPROX_SIMPLE)

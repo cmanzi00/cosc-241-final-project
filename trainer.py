@@ -2,8 +2,6 @@
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.models import Sequential
 import tensorflow as tf
 from model.neural_net import NeuralNet
 from tensorflow.keras.optimizers import Adam
@@ -11,7 +9,6 @@ from tensorflow.keras.datasets import mnist
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import classification_report
 import argparse
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -26,7 +23,7 @@ args = vars(ap.parse_args())
 
 # Set the learning rate, epochs count, and batch size
 LR = 1e-3
-EPOCHS = 24
+EPOCHS = 50
 BS = 128
 
 # Load the MNIST dataset
@@ -57,26 +54,6 @@ model.compile(loss="categorical_crossentropy", optimizer=opt,
 
 print("---------- [INFO] BEGINNING NETWORK TRAINING ---------- ")
 
-# Assuming `trainLabels` is your label array (TensorFlow tensor or numpy array)
-trainLabels_np = trainLabels.numpy() if hasattr(
-    trainLabels, "numpy") else trainLabels
-
-# Flatten the labels to ensure they're 1D
-trainLabels_flat = trainLabels_np.ravel()
-
-# Compute class weights
-class_weights_array = compute_class_weight(
-    class_weight="balanced",
-    classes=np.unique(trainLabels_flat),
-    y=trainLabels_flat
-)
-
-# Convert to a dictionary
-class_weights = {cls: weight for cls, weight in zip(
-    np.unique(trainLabels_flat), class_weights_array)}
-
-print("Class weights dictionary:", class_weights)
-
 # Pass this dictionary to `model.fit`
 model.fit(
     trainData,
@@ -85,3 +62,29 @@ model.fit(
     batch_size=BS,
     epochs=EPOCHS,
 )
+
+# evaluate the network
+print("---------- [INFO] MODEL EVALUATION ----------")
+predictions = model.predict(testData)
+print(classification_report(
+    tf.argmax(testLabels, axis=1),
+    predictions.argmax(axis=1),
+    target_names=[str(x) for x in range(10)]))
+
+# Compute and visualize confusion matrix
+y_true = tf.argmax(testLabels, axis=1)
+y_pred = predictions.argmax(axis=1)
+cm = confusion_matrix(y_true, y_pred)
+
+# Plot confusion matrix
+# plt.figure(figsize=(10, 8))
+# sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+#             xticklabels=np.arange(10), yticklabels=np.arange(10))
+# plt.xlabel("Predicted")
+# plt.ylabel("True")
+# plt.title("Confusion Matrix")
+# plt.show()
+
+# save model to the disk
+print("---------- [INFO] SAVING MODEL ----------")
+model.save(args["model"])

@@ -1,6 +1,6 @@
 # CNN Trained Digit Classification Model w/ Sudoku Solver
 
-This project trains a CNN model to classify digits, enabling it to extract Sudoku puzzles from images and solve them programmatically using the Z3 Solver. 
+This project trains a CNN model to classify digits, enabling it to extract Sudoku puzzles from images and solve them programmatically using the Z3 Solver. This project is accompanied by the following [report](https://github.com/user/repo/blob/branch/other_file.md)
 
 ---
 
@@ -26,7 +26,7 @@ pip install tensorflow numpy opencv-contrib-python scikit-image tabulate imutils
 
 ---
 
-## Installation & Usage
+## Installation & Execution
 
 ### 1. Clone the Repository
 ```sh
@@ -36,6 +36,7 @@ cd cosc-231-final-project
 
 ### 2. Train the Model
 Train the CNN model and save it with your desired name:
+Note: The `model/output` folder contains a model  `model/output/digit_classifier_og.keras` that was trained during the project phase and has been tested on different puzzles in the `images/puzzles` folder. Feel free to use it or train a new one using the command below.
 ```sh
 python trainer.py --model output/{model_name}
 ```
@@ -45,16 +46,48 @@ Provide the trained model and an image of the puzzle to solve it:
 ```sh
 python puzzle_solver.py --model output/{model_name} --image images/{image}
 ```
-Ensure the puzzle image is stored in the `images` folder (the `images` folder contains some test images that can be used).
+Ensure the puzzle image is stored in the `images/puzzles` folder (the `images/puzzles` folder contains some test images that can be used).
 
 ---
 
 ## Sample
-Include visual demonstrations (e.g., screenshots, GIFs, or results).
+Visual demonstrations (e.g., screenshots, GIFs, or results).
 
+Puzzle 1 w/ OCR version and Solution
+<p align="center">
+	<img src="./images/puzzles/sudoku_titled_wide.jpg">
+</p>
+
+<p align="center">
+	<img src="./images/outputs/titled_out.png">
+</p>
+
+Puzzle 2 w/ OCR version and Solution
+<p align="center">
+	<img src="./images/puzzles/sudoku_hard.jpg">
+</p>
+
+<p align="center">
+	<img src="./images/outputs/hard_out.png">
+</p>
+
+Puzzle 3 w/ OCR version and Solution
+<p align="center">
+	<img src="./images/puzzles/sudoku_small.jpg">
+</p>
+<p align="center">
+	<img src="./images/outputs/small_out.png">
+</p>
+
+Puzzle 4 w/ OCR version and Solution
+<p align="center">
+	<img src="./images/puzzles/sudoku_contr.jpg">
+</p>
+<p align="center">
+	<img src="./images/outputs/contr_out.png">
+</p>
 ---
 
 ## Acknowledgments
 - [Grid Detection and Cell Extraction - StackOverflow](https://stackoverflow.com/questions/59182827)
-- [Paper on Hyperparameter Tuning for High Accuracy](https://www.mdpi.com/741864)
 - [Sudoku Images Repo](https://github.com/kirkeaton/sudoku-image-solver/tree/main/sudoku_images)
