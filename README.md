@@ -35,16 +35,16 @@ cd cosc-231-final-project
 ```
 
 ### 2. Train the Model
-Train the CNN model and save it with your desired name:
+Train the CNN model and save it with your desired name (replace `{model_name}`):
 Note: The `model/output` folder contains a model  `model/output/digit_classifier_og.keras` that was trained during the project phase and has been tested on different puzzles in the `images/puzzles` folder. Feel free to use it or train a new one using the command below.
 ```sh
-python trainer.py --model output/{model_name}
+python trainer.py --model model/output/{model_name}
 ```
 
 ### 3. Solve a Sudoku Puzzle
-Provide the trained model and an image of the puzzle to solve it:
+Provide the trained model and an image of the puzzle to be solved:
 ```sh
-python puzzle_solver.py --model output/{model_name} --image images/{image}
+python puzzle_solver.py --model model/output/{model_name} --image images/{image_name}
 ```
 Ensure the puzzle image is stored in the `images/puzzles` folder (the `images/puzzles` folder contains some test images that can be used).
 
@@ -55,11 +55,11 @@ Visual demonstrations (e.g., screenshots, GIFs, or results).
 
 Puzzle 1 w/ OCR version and Solution
 <p align="center">
-	<img src="./images/puzzles/sudoku_titled_wide.jpg">
+	<img src="./images/puzzles/sudoku_tilted_wide.jpg">
 </p>
 
 <p align="center">
-	<img src="./images/outputs/titled_out.png">
+	<img src="./images/outputs/tilted_out.png">
 </p>
 
 Puzzle 2 w/ OCR version and Solution
