@@ -23,7 +23,7 @@ args = vars(ap.parse_args())
 
 # Set the learning rate, epochs count, and batch size
 LR = 1e-3
-EPOCHS = 50
+EPOCHS = 20
 BS = 128
 
 # Load the MNIST dataset

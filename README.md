@@ -21,7 +21,7 @@ This project presents a framework for solving Sudoku puzzles from images using a
 ### Required Libraries
 Install the necessary dependencies:
 ```sh
-pip install tensorflow numpy opencv-contrib-python scikit-image tabulate imutils scikit-learn matplotlib progressbar2 pandas
+pip install tensorflow numpy opencv-contrib-python scikit-image tabulate imutils scikit-learn matplotlib progressbar2 pandas seaborn
 ```
 
 ---
@@ -38,15 +38,15 @@ cd cosc-231-final-project
 Train the CNN model and save it with your desired name (replace `{model_name}`):
 Note: The `model/output` folder contains a model  `model/output/digit_classifier_og.keras` that was trained during the project phase and has been tested on different puzzles in the `images/puzzles` folder. Feel free to use it or train a new one using the command below.
 ```sh
-python trainer.py --model model/output/{model_name}
+python trainer.py --model model/output/{model_name}.keras
 ```
 
 ### 3. Solve a Sudoku Puzzle
-Provide the trained model and an image of the puzzle to be solved:
+Provide the trained model and an image of the puzzle to be solved.
 ```sh
-python puzzle_solver.py --model model/output/{model_name} --image images/{image_name}
+python digit_classifier.py --model model/output/{model_name}.keras --image images/puzzles/{image_name}
 ```
-Ensure the puzzle image is stored in the `images/puzzles` folder (the `images/puzzles` folder contains some test images that can be used).
+Ensure the puzzle image is stored in the `images/puzzles` folder (the `images/puzzles` folder contains some test images that can be used). Our final report uses `sudoku_small.jpg`.
 
 ---
 
